@@ -12,6 +12,18 @@ function indexRoute(req, res, next) {
 		});
 }
 
-module.exports = {
-	index: indexRoute
+function showRoute(req, res, next) {
+	User
+		.findById(req.params.id)
+		.exec()
+		.then((user) => {
+			if(!user) return res.notFound();
+			return res.json(user);
+		})
+		.catch(next);
 }
+
+module.exports = {
+	index: indexRoute,
+	show: showRoute
+};

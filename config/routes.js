@@ -7,6 +7,9 @@ router.get('/', (req, res) => {
 	res.end('Hit /users to get User list');
 });
 
+router.route('/users/:id')
+	.get(users.show);
+
 router.route('/users')
 	.get(users.index);
 
